@@ -28,9 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_borrow")
-@NamedQueries({
-    @NamedQuery(name = "LbBorrow.findAll", query = "SELECT l FROM LbBorrow l")})
-public class LbBorrow implements Serializable {
+public class Borrow implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,20 +58,20 @@ public class LbBorrow implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date borrowEndDate;
     @JoinColumn(name = "item_id", referencedColumnName = "item_id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbItem itemId;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Item itemId;
     @JoinColumn(name = "owner_id", referencedColumnName = "owner_id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbOwner ownerId;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Owner ownerId;
 
-    public LbBorrow() {
+    public Borrow() {
     }
 
-    public LbBorrow(String borrowId) {
+    public Borrow(String borrowId) {
         this.borrowId = borrowId;
     }
 
-    public LbBorrow(String borrowId, String borrowerName, Date borrowStartDate, Date borrowEstimatedDate, Date borrowEndDate) {
+    public Borrow(String borrowId, String borrowerName, Date borrowStartDate, Date borrowEstimatedDate, Date borrowEndDate) {
         this.borrowId = borrowId;
         this.borrowerName = borrowerName;
         this.borrowStartDate = borrowStartDate;
@@ -121,19 +119,19 @@ public class LbBorrow implements Serializable {
         this.borrowEndDate = borrowEndDate;
     }
 
-    public LbItem getItemId() {
+    public Item getItemId() {
         return itemId;
     }
 
-    public void setItemId(LbItem itemId) {
+    public void setItemId(Item itemId) {
         this.itemId = itemId;
     }
 
-    public LbOwner getOwnerId() {
+    public Owner getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(LbOwner ownerId) {
+    public void setOwnerId(Owner ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -147,10 +145,10 @@ public class LbBorrow implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbBorrow)) {
+        if (!(object instanceof Borrow)) {
             return false;
         }
-        LbBorrow other = (LbBorrow) object;
+        Borrow other = (Borrow) object;
         if ((this.borrowId == null && other.borrowId != null) || (this.borrowId != null && !this.borrowId.equals(other.borrowId))) {
             return false;
         }

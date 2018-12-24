@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbGender;
+import com.mycompany.lendingbooks.model.Gender;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,17 +16,17 @@ import javax.ejb.Local;
 @Local
 public interface LbGenderFacadeLocal {
 
-    void create(LbGender lbGender);
+    void create(Gender lbGender);
 
-    void edit(LbGender lbGender);
+    void edit(Gender lbGender);
 
-    void remove(LbGender lbGender);
+    void remove(Gender lbGender);
 
-    LbGender find(Object id);
+    Gender find(Object id);
 
-    List<LbGender> findAll();
+    List<Gender> findAll();
 
-    List<LbGender> findRange(int[] range);
+    List<Gender> findRange(int[] range);
 
     int count();
     

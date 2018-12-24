@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -26,9 +28,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_part")
-@NamedQueries({
-    @NamedQuery(name = "LbPart.findAll", query = "SELECT l FROM LbPart l")})
-public class LbPart implements Serializable {
+@XmlRootElement
+public class Part implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,17 +42,17 @@ public class LbPart implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "part_description")
     private String partDescription;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemPart", fetch = FetchType.EAGER)
-    private List<LbItem> lbItemList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemPart", fetch = FetchType.LAZY)
+    private List<Item> lbItemList;
 
-    public LbPart() {
+    public Part() {
     }
 
-    public LbPart(Integer partId) {
+    public Part(Integer partId) {
         this.partId = partId;
     }
 
-    public LbPart(Integer partId, String partDescription) {
+    public Part(Integer partId, String partDescription) {
         this.partId = partId;
         this.partDescription = partDescription;
     }
@@ -72,11 +73,12 @@ public class LbPart implements Serializable {
         this.partDescription = partDescription;
     }
 
-    public List<LbItem> getLbItemList() {
+    @XmlTransient
+    public List<Item> getLbItemList() {
         return lbItemList;
     }
 
-    public void setLbItemList(List<LbItem> lbItemList) {
+    public void setLbItemList(List<Item> lbItemList) {
         this.lbItemList = lbItemList;
     }
 
@@ -90,10 +92,10 @@ public class LbPart implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbPart)) {
+        if (!(object instanceof Part)) {
             return false;
         }
-        LbPart other = (LbPart) object;
+        Part other = (Part) object;
         if ((this.partId == null && other.partId != null) || (this.partId != null && !this.partId.equals(other.partId))) {
             return false;
         }

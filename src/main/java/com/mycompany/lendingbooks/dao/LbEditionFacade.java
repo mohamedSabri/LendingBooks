@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbEdition;
+import com.mycompany.lendingbooks.model.Edition;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author mohamed sabri
  */
 @Stateless
-public class LbEditionFacade extends AbstractFacade<LbEdition> implements LbEditionFacadeLocal {
+public class LbEditionFacade extends AbstractFacade<Edition> implements LbEditionFacadeLocal {
 
     @PersistenceContext(unitName = "com.mycompany_lendingbooks_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -26,7 +26,7 @@ public class LbEditionFacade extends AbstractFacade<LbEdition> implements LbEdit
     }
 
     public LbEditionFacade() {
-        super(LbEdition.class);
+        super(Edition.class);
     }
     
 }

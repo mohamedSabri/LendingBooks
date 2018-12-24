@@ -28,9 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_item")
-@NamedQueries({
-    @NamedQuery(name = "LbItem.findAll", query = "SELECT l FROM LbItem l")})
-public class LbItem implements Serializable {
+public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -49,22 +47,22 @@ public class LbItem implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "item_name")
     private String itemName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemId", fetch = FetchType.EAGER)
-    private List<LbBorrow> lbBorrowList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemId", fetch = FetchType.LAZY)
+    private List<Borrow> lbBorrowList;
     @JoinColumn(name = "item_part", referencedColumnName = "part_id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbPart itemPart;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lbItem", fetch = FetchType.EAGER)
-    private List<LbItemOwner> lbItemOwnerList;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Part itemPart;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lbItem", fetch = FetchType.LAZY)
+    private List<ItemOwner> lbItemOwnerList;
 
-    public LbItem() {
+    public Item() {
     }
 
-    public LbItem(String itemId) {
+    public Item(String itemId) {
         this.itemId = itemId;
     }
 
-    public LbItem(String itemId, String itemAuthor, String itemName) {
+    public Item(String itemId, String itemAuthor, String itemName) {
         this.itemId = itemId;
         this.itemAuthor = itemAuthor;
         this.itemName = itemName;
@@ -94,27 +92,27 @@ public class LbItem implements Serializable {
         this.itemName = itemName;
     }
 
-    public List<LbBorrow> getLbBorrowList() {
+    public List<Borrow> getLbBorrowList() {
         return lbBorrowList;
     }
 
-    public void setLbBorrowList(List<LbBorrow> lbBorrowList) {
+    public void setLbBorrowList(List<Borrow> lbBorrowList) {
         this.lbBorrowList = lbBorrowList;
     }
 
-    public LbPart getItemPart() {
+    public Part getItemPart() {
         return itemPart;
     }
 
-    public void setItemPart(LbPart itemPart) {
+    public void setItemPart(Part itemPart) {
         this.itemPart = itemPart;
     }
 
-    public List<LbItemOwner> getLbItemOwnerList() {
+    public List<ItemOwner> getLbItemOwnerList() {
         return lbItemOwnerList;
     }
 
-    public void setLbItemOwnerList(List<LbItemOwner> lbItemOwnerList) {
+    public void setLbItemOwnerList(List<ItemOwner> lbItemOwnerList) {
         this.lbItemOwnerList = lbItemOwnerList;
     }
 
@@ -128,10 +126,10 @@ public class LbItem implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbItem)) {
+        if (!(object instanceof Item)) {
             return false;
         }
-        LbItem other = (LbItem) object;
+        Item other = (Item) object;
         if ((this.itemId == null && other.itemId != null) || (this.itemId != null && !this.itemId.equals(other.itemId))) {
             return false;
         }

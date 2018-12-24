@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
  * @author mohamed sabri
  */
 @Embeddable
-public class LbItemOwnerPK implements Serializable {
+public class ItemOwnerPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
@@ -30,10 +30,10 @@ public class LbItemOwnerPK implements Serializable {
     @Column(name = "owner_id")
     private String ownerId;
 
-    public LbItemOwnerPK() {
+    public ItemOwnerPK() {
     }
 
-    public LbItemOwnerPK(String itemId, String ownerId) {
+    public ItemOwnerPK(String itemId, String ownerId) {
         this.itemId = itemId;
         this.ownerId = ownerId;
     }
@@ -65,10 +65,10 @@ public class LbItemOwnerPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbItemOwnerPK)) {
+        if (!(object instanceof ItemOwnerPK)) {
             return false;
         }
-        LbItemOwnerPK other = (LbItemOwnerPK) object;
+        ItemOwnerPK other = (ItemOwnerPK) object;
         if ((this.itemId == null && other.itemId != null) || (this.itemId != null && !this.itemId.equals(other.itemId))) {
             return false;
         }

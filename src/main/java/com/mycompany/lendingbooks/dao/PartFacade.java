@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbPart;
+import com.mycompany.lendingbooks.model.Part;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author mohamed sabri
  */
 @Stateless
-public class LbPartFacade extends AbstractFacade<LbPart> implements LbPartFacadeLocal {
+public class PartFacade extends AbstractFacade<Part> implements PartFacadeLocal {
 
     @PersistenceContext(unitName = "com.mycompany_lendingbooks_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class LbPartFacade extends AbstractFacade<LbPart> implements LbPartFacade
         return em;
     }
 
-    public LbPartFacade() {
-        super(LbPart.class);
+    public PartFacade() {
+        super(Part.class);
     }
     
 }

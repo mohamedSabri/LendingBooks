@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbGender;
+import com.mycompany.lendingbooks.model.Gender;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author mohamed sabri
  */
 @Stateless
-public class LbGenderFacade extends AbstractFacade<LbGender> implements LbGenderFacadeLocal {
+public class LbGenderFacade extends AbstractFacade<Gender> implements LbGenderFacadeLocal {
 
     @PersistenceContext(unitName = "com.mycompany_lendingbooks_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -26,7 +26,7 @@ public class LbGenderFacade extends AbstractFacade<LbGender> implements LbGender
     }
 
     public LbGenderFacade() {
-        super(LbGender.class);
+        super(Gender.class);
     }
     
 }

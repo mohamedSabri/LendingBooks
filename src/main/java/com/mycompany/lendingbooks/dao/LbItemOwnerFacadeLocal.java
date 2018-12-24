@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbItemOwner;
+import com.mycompany.lendingbooks.model.ItemOwner;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,17 +16,17 @@ import javax.ejb.Local;
 @Local
 public interface LbItemOwnerFacadeLocal {
 
-    void create(LbItemOwner lbItemOwner);
+    void create(ItemOwner lbItemOwner);
 
-    void edit(LbItemOwner lbItemOwner);
+    void edit(ItemOwner lbItemOwner);
 
-    void remove(LbItemOwner lbItemOwner);
+    void remove(ItemOwner lbItemOwner);
 
-    LbItemOwner find(Object id);
+    ItemOwner find(Object id);
 
-    List<LbItemOwner> findAll();
+    List<ItemOwner> findAll();
 
-    List<LbItemOwner> findRange(int[] range);
+    List<ItemOwner> findRange(int[] range);
 
     int count();
     

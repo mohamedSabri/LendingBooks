@@ -28,13 +28,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_item_owner")
-@NamedQueries({
-    @NamedQuery(name = "LbItemOwner.findAll", query = "SELECT l FROM LbItemOwner l")})
-public class LbItemOwner implements Serializable {
+public class ItemOwner implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected LbItemOwnerPK lbItemOwnerPK;
+    protected ItemOwnerPK lbItemOwnerPK;
     @Basic(optional = false)
     @NotNull
     @Column(name = "creation_date")
@@ -53,38 +51,38 @@ public class LbItemOwner implements Serializable {
     @Column(name = "item_count")
     private int itemCount;
     @JoinColumn(name = "item_edition", referencedColumnName = "edition_id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbEdition itemEdition;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Edition itemEdition;
     @JoinColumn(name = "item_id", referencedColumnName = "item_id", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbItem lbItem;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Item lbItem;
     @JoinColumn(name = "owner_id", referencedColumnName = "owner_id", insertable = false, updatable = false)
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbOwner lbOwner;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Owner lbOwner;
 
-    public LbItemOwner() {
+    public ItemOwner() {
     }
 
-    public LbItemOwner(LbItemOwnerPK lbItemOwnerPK) {
+    public ItemOwner(ItemOwnerPK lbItemOwnerPK) {
         this.lbItemOwnerPK = lbItemOwnerPK;
     }
 
-    public LbItemOwner(LbItemOwnerPK lbItemOwnerPK, Date creationDate, Date updateDate, int itemCount) {
+    public ItemOwner(ItemOwnerPK lbItemOwnerPK, Date creationDate, Date updateDate, int itemCount) {
         this.lbItemOwnerPK = lbItemOwnerPK;
         this.creationDate = creationDate;
         this.updateDate = updateDate;
         this.itemCount = itemCount;
     }
 
-    public LbItemOwner(String itemId, String ownerId) {
-        this.lbItemOwnerPK = new LbItemOwnerPK(itemId, ownerId);
+    public ItemOwner(String itemId, String ownerId) {
+        this.lbItemOwnerPK = new ItemOwnerPK(itemId, ownerId);
     }
 
-    public LbItemOwnerPK getLbItemOwnerPK() {
+    public ItemOwnerPK getLbItemOwnerPK() {
         return lbItemOwnerPK;
     }
 
-    public void setLbItemOwnerPK(LbItemOwnerPK lbItemOwnerPK) {
+    public void setLbItemOwnerPK(ItemOwnerPK lbItemOwnerPK) {
         this.lbItemOwnerPK = lbItemOwnerPK;
     }
 
@@ -120,27 +118,27 @@ public class LbItemOwner implements Serializable {
         this.itemCount = itemCount;
     }
 
-    public LbEdition getItemEdition() {
+    public Edition getItemEdition() {
         return itemEdition;
     }
 
-    public void setItemEdition(LbEdition itemEdition) {
+    public void setItemEdition(Edition itemEdition) {
         this.itemEdition = itemEdition;
     }
 
-    public LbItem getLbItem() {
+    public Item getLbItem() {
         return lbItem;
     }
 
-    public void setLbItem(LbItem lbItem) {
+    public void setLbItem(Item lbItem) {
         this.lbItem = lbItem;
     }
 
-    public LbOwner getLbOwner() {
+    public Owner getLbOwner() {
         return lbOwner;
     }
 
-    public void setLbOwner(LbOwner lbOwner) {
+    public void setLbOwner(Owner lbOwner) {
         this.lbOwner = lbOwner;
     }
 
@@ -154,10 +152,10 @@ public class LbItemOwner implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbItemOwner)) {
+        if (!(object instanceof ItemOwner)) {
             return false;
         }
-        LbItemOwner other = (LbItemOwner) object;
+        ItemOwner other = (ItemOwner) object;
         if ((this.lbItemOwnerPK == null && other.lbItemOwnerPK != null) || (this.lbItemOwnerPK != null && !this.lbItemOwnerPK.equals(other.lbItemOwnerPK))) {
             return false;
         }

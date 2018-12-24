@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbBorrow;
+import com.mycompany.lendingbooks.model.Borrow;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,17 +16,17 @@ import javax.ejb.Local;
 @Local
 public interface LbBorrowFacadeLocal {
 
-    void create(LbBorrow lbBorrow);
+    void create(Borrow lbBorrow);
 
-    void edit(LbBorrow lbBorrow);
+    void edit(Borrow lbBorrow);
 
-    void remove(LbBorrow lbBorrow);
+    void remove(Borrow lbBorrow);
 
-    LbBorrow find(Object id);
+    Borrow find(Object id);
 
-    List<LbBorrow> findAll();
+    List<Borrow> findAll();
 
-    List<LbBorrow> findRange(int[] range);
+    List<Borrow> findRange(int[] range);
 
     int count();
     

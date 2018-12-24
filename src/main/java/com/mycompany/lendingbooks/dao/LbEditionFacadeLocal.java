@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbEdition;
+import com.mycompany.lendingbooks.model.Edition;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -16,17 +16,17 @@ import javax.ejb.Local;
 @Local
 public interface LbEditionFacadeLocal {
 
-    void create(LbEdition lbEdition);
+    void create(Edition lbEdition);
 
-    void edit(LbEdition lbEdition);
+    void edit(Edition lbEdition);
 
-    void remove(LbEdition lbEdition);
+    void remove(Edition lbEdition);
 
-    LbEdition find(Object id);
+    Edition find(Object id);
 
-    List<LbEdition> findAll();
+    List<Edition> findAll();
 
-    List<LbEdition> findRange(int[] range);
+    List<Edition> findRange(int[] range);
 
     int count();
     

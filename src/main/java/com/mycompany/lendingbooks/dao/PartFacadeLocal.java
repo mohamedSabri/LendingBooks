@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbPart;
+import com.mycompany.lendingbooks.model.Part;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author mohamed sabri
  */
 @Local
-public interface LbPartFacadeLocal {
+public interface PartFacadeLocal {
 
-    void create(LbPart lbPart);
+    void create(Part lbPart);
 
-    void edit(LbPart lbPart);
+    void edit(Part lbPart);
 
-    void remove(LbPart lbPart);
+    void remove(Part lbPart);
 
-    LbPart find(Object id);
+    Part find(Object id);
 
-    List<LbPart> findAll();
+    List<Part> findAll();
 
-    List<LbPart> findRange(int[] range);
+    List<Part> findRange(int[] range);
 
     int count();
     

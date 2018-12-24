@@ -28,9 +28,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_owner")
-@NamedQueries({
-    @NamedQuery(name = "LbOwner.findAll", query = "SELECT l FROM LbOwner l")})
-public class LbOwner implements Serializable {
+
+public class Owner implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,22 +53,22 @@ public class LbOwner implements Serializable {
     @Size(min = 1, max = 150)
     @Column(name = "owner_password")
     private String ownerPassword;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerId", fetch = FetchType.EAGER)
-    private List<LbBorrow> lbBorrowList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lbOwner", fetch = FetchType.EAGER)
-    private List<LbItemOwner> lbItemOwnerList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerId", fetch = FetchType.LAZY)
+    private List<Borrow> lbBorrowList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "lbOwner", fetch = FetchType.LAZY)
+    private List<ItemOwner> lbItemOwnerList;
     @JoinColumn(name = "owner_gender", referencedColumnName = "gender_id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private LbGender ownerGender;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Gender ownerGender;
 
-    public LbOwner() {
+    public Owner() {
     }
 
-    public LbOwner(String ownerId) {
+    public Owner(String ownerId) {
         this.ownerId = ownerId;
     }
 
-    public LbOwner(String ownerId, String ownerName, String ownerEmail, String ownerPassword) {
+    public Owner(String ownerId, String ownerName, String ownerEmail, String ownerPassword) {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.ownerEmail = ownerEmail;
@@ -108,27 +107,27 @@ public class LbOwner implements Serializable {
         this.ownerPassword = ownerPassword;
     }
 
-    public List<LbBorrow> getLbBorrowList() {
+    public List<Borrow> getLbBorrowList() {
         return lbBorrowList;
     }
 
-    public void setLbBorrowList(List<LbBorrow> lbBorrowList) {
+    public void setLbBorrowList(List<Borrow> lbBorrowList) {
         this.lbBorrowList = lbBorrowList;
     }
 
-    public List<LbItemOwner> getLbItemOwnerList() {
+    public List<ItemOwner> getLbItemOwnerList() {
         return lbItemOwnerList;
     }
 
-    public void setLbItemOwnerList(List<LbItemOwner> lbItemOwnerList) {
+    public void setLbItemOwnerList(List<ItemOwner> lbItemOwnerList) {
         this.lbItemOwnerList = lbItemOwnerList;
     }
 
-    public LbGender getOwnerGender() {
+    public Gender getOwnerGender() {
         return ownerGender;
     }
 
-    public void setOwnerGender(LbGender ownerGender) {
+    public void setOwnerGender(Gender ownerGender) {
         this.ownerGender = ownerGender;
     }
 
@@ -142,10 +141,10 @@ public class LbOwner implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbOwner)) {
+        if (!(object instanceof Owner)) {
             return false;
         }
-        LbOwner other = (LbOwner) object;
+        Owner other = (Owner) object;
         if ((this.ownerId == null && other.ownerId != null) || (this.ownerId != null && !this.ownerId.equals(other.ownerId))) {
             return false;
         }

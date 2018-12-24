@@ -26,9 +26,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_gender")
-@NamedQueries({
-    @NamedQuery(name = "LbGender.findAll", query = "SELECT l FROM LbGender l")})
-public class LbGender implements Serializable {
+public class Gender implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,16 +40,16 @@ public class LbGender implements Serializable {
     @Column(name = "gender_description")
     private String genderDescription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ownerGender", fetch = FetchType.EAGER)
-    private List<LbOwner> lbOwnerList;
+    private List<Owner> lbOwnerList;
 
-    public LbGender() {
+    public Gender() {
     }
 
-    public LbGender(Integer genderId) {
+    public Gender(Integer genderId) {
         this.genderId = genderId;
     }
 
-    public LbGender(Integer genderId, String genderDescription) {
+    public Gender(Integer genderId, String genderDescription) {
         this.genderId = genderId;
         this.genderDescription = genderDescription;
     }
@@ -72,11 +70,11 @@ public class LbGender implements Serializable {
         this.genderDescription = genderDescription;
     }
 
-    public List<LbOwner> getLbOwnerList() {
+    public List<Owner> getLbOwnerList() {
         return lbOwnerList;
     }
 
-    public void setLbOwnerList(List<LbOwner> lbOwnerList) {
+    public void setLbOwnerList(List<Owner> lbOwnerList) {
         this.lbOwnerList = lbOwnerList;
     }
 
@@ -90,10 +88,10 @@ public class LbGender implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbGender)) {
+        if (!(object instanceof Gender)) {
             return false;
         }
-        LbGender other = (LbGender) object;
+        Gender other = (Gender) object;
         if ((this.genderId == null && other.genderId != null) || (this.genderId != null && !this.genderId.equals(other.genderId))) {
             return false;
         }

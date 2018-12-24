@@ -26,9 +26,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "lb_edition")
-@NamedQueries({
-    @NamedQuery(name = "LbEdition.findAll", query = "SELECT l FROM LbEdition l")})
-public class LbEdition implements Serializable {
+public class Edition implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -42,16 +40,16 @@ public class LbEdition implements Serializable {
     @Column(name = "edition_description")
     private String editionDescription;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "itemEdition", fetch = FetchType.EAGER)
-    private List<LbItemOwner> lbItemOwnerList;
+    private List<ItemOwner> lbItemOwnerList;
 
-    public LbEdition() {
+    public Edition() {
     }
 
-    public LbEdition(Integer editionId) {
+    public Edition(Integer editionId) {
         this.editionId = editionId;
     }
 
-    public LbEdition(Integer editionId, String editionDescription) {
+    public Edition(Integer editionId, String editionDescription) {
         this.editionId = editionId;
         this.editionDescription = editionDescription;
     }
@@ -72,11 +70,11 @@ public class LbEdition implements Serializable {
         this.editionDescription = editionDescription;
     }
 
-    public List<LbItemOwner> getLbItemOwnerList() {
+    public List<ItemOwner> getLbItemOwnerList() {
         return lbItemOwnerList;
     }
 
-    public void setLbItemOwnerList(List<LbItemOwner> lbItemOwnerList) {
+    public void setLbItemOwnerList(List<ItemOwner> lbItemOwnerList) {
         this.lbItemOwnerList = lbItemOwnerList;
     }
 
@@ -90,10 +88,10 @@ public class LbEdition implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof LbEdition)) {
+        if (!(object instanceof Edition)) {
             return false;
         }
-        LbEdition other = (LbEdition) object;
+        Edition other = (Edition) object;
         if ((this.editionId == null && other.editionId != null) || (this.editionId != null && !this.editionId.equals(other.editionId))) {
             return false;
         }

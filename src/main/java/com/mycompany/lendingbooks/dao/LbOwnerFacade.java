@@ -5,7 +5,7 @@
  */
 package com.mycompany.lendingbooks.dao;
 
-import com.mycompany.lendingbooks.model.LbOwner;
+import com.mycompany.lendingbooks.model.Owner;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author mohamed sabri
  */
 @Stateless
-public class LbOwnerFacade extends AbstractFacade<LbOwner> implements LbOwnerFacadeLocal {
+public class LbOwnerFacade extends AbstractFacade<Owner> implements LbOwnerFacadeLocal {
 
     @PersistenceContext(unitName = "com.mycompany_lendingbooks_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -26,7 +26,7 @@ public class LbOwnerFacade extends AbstractFacade<LbOwner> implements LbOwnerFac
     }
 
     public LbOwnerFacade() {
-        super(LbOwner.class);
+        super(Owner.class);
     }
     
 }
